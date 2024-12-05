@@ -13,8 +13,8 @@ const Form = () => {
     popularity: "",
     releaseDate: "",
     voteAverage: "",
-    videos: [], // Add videos to formData
-    cast: [], // Add cast to formData
+    videos: [], 
+    cast: [], 
   });
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -67,13 +67,13 @@ const Form = () => {
   const handleSelectMovie = (movie) => {
     setSelectedMovie(movie);
     setFormData({
-        title: movie.title, // Use movie.title instead of movieData.title
-        overview: movie.overview, // Use movie.overview instead of movieData.overview
-        popularity: movie.popularity, // Use movie.popularity instead of movieData.popularity
-        releaseDate: movie.release_date, // Use movie.release_date instead of movieData.releaseDate
-        voteAverage: movie.vote_average, // Use movie.vote_average instead of movieData.voteAverage
-        videos: [], // Initialize videos as an empty array
-        cast: [], // Initialize cast as an empty array
+        title: movie.title, 
+        overview: movie.overview, 
+        popularity: movie.popularity, 
+        releaseDate: movie.release_date, 
+        voteAverage: movie.vote_average, 
+        videos: [],
+        cast: [], 
     });
     setError("");
 
@@ -88,7 +88,7 @@ const Form = () => {
         setVideos(response.data.results);
         setFormData(prevData => ({
             ...prevData,
-            videos: response.data.results, // Save videos to formData
+            videos: response.data.results, 
         }));
     })
     .catch(() => {
@@ -106,7 +106,7 @@ const Form = () => {
         setCast(response.data.cast);
         setFormData(prevData => ({
             ...prevData,
-            cast: response.data.cast, // Save cast to formData
+            cast: response.data.cast, 
         }));
     })
     .catch(() => {
@@ -169,8 +169,8 @@ const Form = () => {
       backdropPath: `https://image.tmdb.org/t/p/original/${selectedMovie.backdrop_path}`,
       posterPath: `https://image.tmdb.org/t/p/original/${selectedMovie.poster_path}`,
       isFeatured: 0,
-      videos: formData.videos, // Include videos in the data
-      cast: formData.cast, // Include cast in the data
+      videos: formData.videos, 
+      cast: formData.cast, 
     };
     
     try {
@@ -216,8 +216,8 @@ const Form = () => {
           popularity: movieData.popularity,
           releaseDate: movieData.releaseDate,
           voteAverage: movieData.voteAverage,
-          videos: movieData.videos || [], // Load videos if available
-          cast: movieData.cast || [], // Load cast if available
+          videos: movieData.videos || [], 
+          cast: movieData.cast || [], 
         });
       })
       .catch(() => {

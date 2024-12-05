@@ -14,7 +14,7 @@ const Movie = () => {
   letterSpacing: "1px",
   paddingBottom : "15px",
   textTransform: "uppercase",
-}}>Movie 321</h1>
+}}>Movie 123</h1>
 
       <Outlet />
     </>
