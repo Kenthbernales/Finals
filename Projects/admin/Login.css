@@ -1,0 +1,104 @@
+/* Netflix-inspired CSS */
+
+/* General body styling */
+body {
+  background-color: #121212; /* Dark background for the movie hub */
+  color: #ffffff; /* White text for contrast */
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Font style */
+  margin: 0;
+  padding: 0;
+}
+
+/* Main container styling */
+.main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Form container styling */
+.form-container {
+  background-color: #333;
+  padding: 4rem 2rem;
+  border: 1px solid #444;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 400px;
+}
+
+.form-container > div {
+  margin-bottom: 12px;
+}
+
+/* Form group styling */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.form-group label {
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #b3b3b3;
+}
+
+.form-group input {
+  padding: 10px;
+  border: 1px solid #555;
+  border-radius: 4px;
+  background-color: #222;
+  color: #fff;
+  font-size: 16px;
+}
+
+.errors {
+  color: #e87c03;
+  font-size: 12px;
+}
+
+/* Submit container styling */
+.submit-container {
+  margin-top: 12px;
+  text-align: center;
+}
+
+.submit-container button {
+  background-color: #e50914;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.submit-container button:hover {
+  background-color: #f40612;
+  transform: scale(1.05);
+}
+
+/* Register container styling */
+.register-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Show password styling */
+.show-password {
+  margin-bottom: 1rem;
+  cursor: pointer;
+  color: #b3b3b3;
+}
+
+.show-password:hover {
+  color: #fff;
+}
