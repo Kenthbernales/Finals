@@ -2,17 +2,18 @@ import { useNavigate } from 'react-router-dom';
 import './List.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-const List = () => {
+
+const Lists = () => {
   const accessToken = localStorage.getItem('accessToken');
   const navigate = useNavigate();
-  const [list, setList] = useState([]);
+  const [lists, setLists] = useState([]);
 
   const getMovies = () => {
-    //get the movies from the api or database
     axios.get('/movies').then((response) => {
-      setList(response.data);
+      setLists(response.data);
     });
   };
+
   useEffect(() => {
     getMovies();
   }, []);
@@ -29,24 +30,21 @@ const List = () => {
           },
         })
         .then(() => {
-          //update list by modifying the movie list array
-          const tempList = [...list];
-          const index = list.findIndex((movie) => movie.id === id);
+          const tempLists = [...lists];
+          const index = lists.findIndex((movie) => movie.id === id);
           if (index !== undefined || index !== -1) {
-            tempList.splice(index, 1);
-            setList(tempList);
+            tempLists.splice(index, 1);
+            setLists(tempLists);
           }
-
-          //update list by requesting again to api
-          // getMovies();
+          getMovies();
         });
     }
   };
 
   return (
-    <div className='list-container'>
+    <div className='lists-container'>
       <div className='create-container'>
-        <button
+        <button className='create'
           type='button'
           onClick={() => {
             navigate('/main/movies/form');
@@ -56,7 +54,7 @@ const List = () => {
         </button>
       </div>
       <div className='table-container'>
-        <table className='movie-list'>
+        <table className='movie-lists'>
           <thead>
             <tr>
               <th>ID</th>
@@ -65,12 +63,12 @@ const List = () => {
             </tr>
           </thead>
           <tbody>
-            {list.map((movie) => (
-              <tr>
+            {lists.map((movie) => (
+              <tr key={movie.id}>
                 <td>{movie.id}</td>
-                <td>{movie.title}</td>
+                <td className="title-cell">{movie.title}</td> 
                 <td>
-                  <button
+                  <button className='edit'
                     type='button'
                     onClick={() => {
                       navigate('/main/movies/form/' + movie.id);
@@ -78,7 +76,7 @@ const List = () => {
                   >
                     Edit
                   </button>
-                  <button type='button' onClick={() => handleDelete(movie.id)}>
+                  <button className='delete' type='button' onClick={() => handleDelete(movie.id)}>
                     Delete
                   </button>
                 </td>
@@ -91,4 +89,4 @@ const List = () => {
   );
 };
 
-export default List;
+export default Lists;
