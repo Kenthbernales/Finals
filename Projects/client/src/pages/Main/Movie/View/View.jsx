@@ -38,11 +38,11 @@ function View() {
           </div>
 
           <div className="View-sections">
-            {movie.casts && movie.casts.length > 0 && (
-              <div className="View-section">
-                <h2 className="View-section-title">Cast & Crew</h2>
-                <div className="View-cast-grid">
-                  {movie.casts.map((cast, index) => (
+            <div className="View-section">
+              <h2 className="View-section-title">Cast & Crew</h2>
+              <div className="View-cast-grid">
+                {movie.casts && movie.casts.length > 0 ? (
+                  movie.casts.map((cast, index) => (
                     <div className="View-cast-card" key={index}>
                       <img
                         src={cast.image || '/default-avatar.jpg'}
@@ -51,16 +51,18 @@ function View() {
                       />
                       <p className="View-cast-name">{cast.name}</p>
                     </div>
-                  ))}
-                </div>
+                  ))
+                ) : (
+                  <p>No cast information available.</p>
+                )}
               </div>
-            )}
+            </div>
 
-            {movie.videos && movie.videos.length > 0 && (
-              <div className="View-section">
-                <h2 className="View-section-title">Videos</h2>
-                <div className="View-video-grid">
-                  {movie.videos.map((video, index) => (
+            <div className="View-section">
+              <h2 className="View-section-title">Videos</h2>
+              <div className="View-video-grid">
+                {movie.videos && movie.videos.length > 0 ? (
+                  movie.videos.map((video, index) => (
                     <div key={index} className="View-video-card">
                       <iframe
                         src={video.url}
@@ -72,26 +74,30 @@ function View() {
                       ></iframe>
                       <p className="View-video-title">{video.title}</p>
                     </div>
-                  ))}
-                </div>
+                  ))
+                ) : (
+                  <p>No videos available.</p>
+                )}
               </div>
-            )}
+            </div>
 
-            {movie.photos && movie.photos.length > 0 && (
-              <div className="View-section">
-                <h2 className="View-section-title">Photos</h2>
-                <div className="View-photo-grid">
-                  {movie.photos.map((photo, index) => (
+            <div className="View-section">
+              <h2 className="View-section-title">Photos</h2>
+              <div className="View-photo-grid">
+                {movie.photos && movie.photos.length > 0 ? (
+                  movie.photos.map((photo, index) => (
                     <img
                       src={photo.url}
                       alt={`Photo ${index + 1}`}
                       className="View-photo"
                       key={index}
                     />
-                  ))}
-                </div>
+                  ))
+                ) : (
+                  <p>No photos available.</p>
+                )}
               </div>
-            )}
+            </div>
           </div>
         </>
       )}
