@@ -50,7 +50,7 @@ const Lists = () => {
             navigate('/main/movies/form');
           }}
         >
-          Create new
+          Search and Save
         </button>
       </div>
       <div className='table-container'>
