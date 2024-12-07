@@ -1,44 +1,66 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import './Main.css';
 
 function Main() {
   const accessToken = localStorage.getItem('accessToken');
   const navigate = useNavigate();
+
+
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
+
   const handleLogout = () => {
-    localStorage.removeItem('accessToken');
+    const confirmLogout = window.confirm('Are you sure you want to logout?');
+    if (confirmLogout) {
+      setIsLoggingOut(true); 
+      setTimeout(() => {
+        localStorage.removeItem('accessToken');
+        setIsLoggingOut(false);
+        navigate('/login'); 
+      }, 3000);
+    }
   };
 
   useEffect(() => {
-    if (
-      accessToken === undefined ||
-      accessToken === '' ||
-      accessToken === null
-    ) {
-      handleLogout();
+    if (!accessToken) {
+      navigate('/login'); 
     }
-  }, []);
+  }, [accessToken, navigate]); 
+
   return (
-    <div className='Main'>
-      <div className='container'>
-        <div className='navigation'>
+    <div className="Main">
+      <div className="container">
+        <div className="navigation">
           <ul>
             <li>
-              <a onClick={() => navigate('/')}>Movies</a>
+              {}
+              <a
+                style={{ pointerEvents: 'none', color: 'gray', cursor: 'not-allowed' }}
+                onClick={(e) => e.preventDefault()}
+              >
+                  Click Home
+              </a>
+            </li>
+            <li>
+              <a onClick={() => navigate('/home')}>Home</a>
             </li>
             {accessToken ? (
-              <li className='logout'>
-                <a onClick={handleLogout}>Logout</a>
+              <li className="logout">
+                <a onClick={handleLogout}>Log Out</a>
               </li>
             ) : (
-              <li className='login'>
-                <a onClick={() => alert('Go to Login page')}>Login</a>
+              <li className="login">
+                <a onClick={() => navigate('/login')}>Login</a> {}
               </li>
             )}
           </ul>
         </div>
-        <div className='outlet'>
-          <Outlet />
+        <div className="outlet">
+          {isLoggingOut ? (
+            <div className="loading-spinner"></div>
+          ) : (
+            <Outlet />
+          )}
         </div>
       </div>
     </div>

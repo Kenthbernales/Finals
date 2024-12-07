@@ -60,7 +60,7 @@ function Login() {
     } catch (e) {
       console.log(e);
 
-      
+ 
       setTimeout(() => {
         setStatus('idle');
       }, 3000);
@@ -134,7 +134,7 @@ function Login() {
             </div>
 
             <div className='register-container'>
-              <small>Don't have an account? </small>
+              <small>Do not have account? </small>
               <a href='/register'>
                 <small>Register</small>
               </a>

@@ -36,7 +36,7 @@ function Register() {
 
         alert('User registered successfully');
 
-       
+   
         setTimeout(async () => {
           try {
             const res = await axios({
@@ -146,7 +146,7 @@ function Register() {
               </button>
             </div>
             <div className='reg-container'>
-              <small>Already have an account? </small>
+              <small>Have an account? </small>
               <a href='/login'>
                 <small>Log In</small>
               </a>
